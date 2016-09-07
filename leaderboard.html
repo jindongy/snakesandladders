@@ -1,0 +1,60 @@
+<head>
+    <title>Snakes&Ladders</title>
+</head>
+<body>
+    <h1>Snakes&Ladders</h1>
+
+    <p>
+    {{> loginButtons}}
+    </p>
+
+    <br>
+    {{> board}}
+</body>
+
+<template name = "board">
+    
+	{{#if currentUser}}
+	    {{> addPlayerForm}}
+
+		<table style = "width: 100%">
+
+			<th>Name</th>
+			<th>Score</th>
+
+
+
+			{{#each player}}
+				<tr class = "player {{selectedClass}}">
+					<td> {{name}} </td>
+					<td> {{score}} </td>
+				</tr>
+			{{/each}}
+
+		</table>
+
+		{{#if selectedPlayer}}
+			<button class="remove">Remove {{selectedPlayer.name}} from the game</button>
+		{{/if}}
+		{{else}}
+    		<p>You must be logged-in to see this content.</p>
+		{{/if}}
+
+		{{#if resetButton}}
+			<p> The winner of this round is {{resetButton.name}}! Press the button below to start a new game!</p>
+			<br>
+			<button class = "reset"> Reset Game </button>
+		{{/if}}
+</template>
+
+<template name="addPlayerForm">
+
+    <form>
+        <input type="text" name="playerName">
+        <input type="submit" value="Add Player">
+    </form>
+
+    <br>
+    <button class="roll">Roll Here</button>
+
+</template>
